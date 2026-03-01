@@ -6,10 +6,7 @@ router = APIRouter(tags=["test"], prefix="/test")
 
 
 @router.post("/create")
-def create(
-    name: str,
-    idempotency_key: str = Header(..., alias="Idempotency-Key")
-):
+def create(name: str):
     return TestService.create_test(name)
 
 
@@ -21,3 +18,8 @@ def get(id: str):
 @router.get("/getall")
 def get_all():
     return TestService.get_all()
+
+
+@router.get("/test")
+def test(x: str):
+    return {"message": f"Received  value: {x}"}
